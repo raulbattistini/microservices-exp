@@ -1,16 +1,15 @@
 import config from "config";
-import { USERS_SERVICE_DB_URL } from "../../config/config";
 import { DataSource } from "typeorm";
-import User from "#root/models/User";
+import User from "../models/User";
 
-const AppDataSource = new DataSource({
-  entities: [User ],
+export const AppDataSource = new DataSource({
   type: "mysql",
   host: "localhost",
   port: 3306,
   username: "root",
   password: "root",
-  database: "arqurb",
+  database: "users",
+  entities: [User],
 });
 
 AppDataSource.initialize()
@@ -20,4 +19,3 @@ AppDataSource.initialize()
   .catch((err) => {
     console.error("Error during initialization: ", err);
   });
-export default AppDataSource;

@@ -2,33 +2,13 @@ import { Entity, MigrationInterface, QueryRunner, Table, TableIndex } from "type
 
 export class Users1663611499853 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.createTable(
-      new Table({
-        columns: [
-          {
-            isPrimary: true,
-            length: "36",
-            name: "id",
-            type: "char",
-          },
-          {
-            length: "25",
-            name: "username",
-            type: "varchar",
-          },
-          {
-            length: "60",
-            name: "passwordHash",
-            type: "char",
-          },
-          {
-            default: "now()",
-            name: "createdAt",
-            type: "timestamp",
-          },
-        ],
-        name: "users",
-      })
+    await queryRunner.query(
+     `CREATE TABLE "users"(
+      id CHAR(36),
+      username VARCHAR(25),
+      passwordHash CHAR(60),
+      createdAt CHAR(10),
+     );`
     );
     await queryRunner.createIndex(
         "users",
