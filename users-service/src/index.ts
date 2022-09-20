@@ -1,6 +1,9 @@
-import  config  from "config";
-import "reflect-metadata";
-import "./db/connection";
-import {startServer} from "../src/server/startServer";
+import { AppDataSource } from "./db/data-source";
+import { User } from "./entity/User";
 
-startServer();
+AppDataSource.initialize()
+  .then(async () => {
+    const users = await AppDataSource.manager.find(User);
+    console.log("Loaded users: ", users);
+  })
+  .catch((error) => console.log(error));
