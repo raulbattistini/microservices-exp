@@ -1,0 +1,24 @@
+{
+  "name": "microservices-exp",
+  "version": "1.0.0",
+  "description": "> Using Node, Express, TypeORM, Typescript, GraphQL, Docker, phpMyAdmin (or intending to -- MySQL Workbench as alternative)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "log": "ts-node-dev log.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raulbattistini/microservices-exp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raulbattistini/microservices-exp/issues"
+  },
+  "homepage": "https://github.com/raulbattistini/microservices-exp#readme",
+  "dependencies": {
+    "ts-node-dev": "^2.0.0"
+  }
+}
