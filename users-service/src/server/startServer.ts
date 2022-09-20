@@ -1,7 +1,9 @@
 import bodyParser from "body-parser";
 import cors from "cors";
 import express, { Request, Response, NextFunction } from "express";
-import accessEnv from "#root/helpers/helper";
+import accessEnv from "../helpers/helper";
+import { setRoutes } from "./routes";
+
 
 const PORT = parseInt(accessEnv("PORT", "3333"), 10);
 
@@ -17,12 +19,14 @@ export const startServer = () => {
     })
   );
 
+  setRoutes(app);
+
+
   app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     return res.status(500).json({ message: err.message });
-    console.log('wwwww')
   });
 
-  app.listen(3333, ()=>{
-   console.log(`Server is listening on port: 3333`)
+  app.listen(PORT, ()=>{
+   console.log(`Server is listening on port: ${PORT}`)
   })
 };
