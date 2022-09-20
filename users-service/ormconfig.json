@@ -2,14 +2,14 @@
    "cli":{
       "migrationsDir": "src/db/migrations"
    },
-   "entities": ["src/db/entities/*.ts"],
-   "logging": false,
-   "migrations": ["src/db/migrations/*.ts"],
-   "synchronize": true,
+   "entities": "[__dirname + '/models/admin/*.{js,ts}']",
+   "migrations": "[__dirname + '/migrations/*.{js,ts}']",
+   "synchronize": false,
    "type": "mysql",
    "host": "localhost",
    "port": 3306,
    "username": "root",
    "password": "root",
+   "logging": false,
    "database": "arqurb"
 }
