@@ -1,6 +1,6 @@
 import { Express, NextFunction, Request } from "express";
 import { getRepository } from "typeorm";
-import { AppDataSource } from "../db/connection";
+import { AppDataSource } from "../db/data-source";
 import User from "../models/User";
 
 export const setRoutes = (app: Express) => {
@@ -11,8 +11,8 @@ export const setRoutes = (app: Express) => {
         where: { id: req.params.id },
       });
 
-      if (!user) {
-        return next(new Error("Invalid user ID!"));
+      if (req.params.id === null) {
+        return res.status(404).json({message: "Sorry can't find that!"});
       }
       return res.json(user);
     } catch (err) {
