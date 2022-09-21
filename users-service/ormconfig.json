@@ -1,6 +1,6 @@
 {
    "cli":{
-      "migrationsDir": "src/db/migrations"
+      "migrationsDir": "src/migrations"
    },
    "entities": "[__dirname + '/models/admin/*.{js,ts}']",
    "migrations": "[__dirname + '/migrations/*.{js,ts}']",
