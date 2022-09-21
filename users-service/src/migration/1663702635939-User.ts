@@ -15,7 +15,7 @@ export class User1663702635939 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`DROP DATABASE user;`)
+        await queryRunner.query('DROP TABLE photos')
     }
 
 }
