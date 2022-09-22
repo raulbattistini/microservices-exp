@@ -4,7 +4,7 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from "typeor
 export class UserSession {
 
     @PrimaryGeneratedColumn("uuid")
-    id: number
+    id: string
 
     @Column("char", {length: 36})
     userId: string
