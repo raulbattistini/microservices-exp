@@ -1,23 +1,17 @@
 import { UserSession } from "./../entity/UserSession";
 import { generateUUID } from "./../helpers/generateUUID";
 import { Express, NextFunction, Request } from "express";
-import { DataSource, getRepository } from "typeorm";
 import dayjs from "dayjs";
 import { AppDataSource } from "../db/data-source";
-import {User} from "../models/User";
+import { User } from "../models/User";
 import { passwordCompareSync } from "../helpers/passwordCompareSync";
+import { hashPassword } from "#root/helpers/passwordHash";
 
 export const setRoutes = (app: Express) => {
   AppDataSource.initialize();
-  const entitymetadata = AppDataSource['entityMetadatas']
   const userRepository = AppDataSource.getRepository(User);
-  console.log('Entity Metadata contém:  -->', entitymetadata) // retorna [], ou seja, o problema se encontra na Data Source que nao possui o 'Entity Metadata' para 'User', embora seja definido no arquivo.
-  const connection = new DataSource({
-    type: "mysql",
-  });
+  const userSessionRepository = AppDataSource.getRepository(UserSession);
 
-  // const manager = userRepository.manager;
-  // console.log(manager.connection)
   app.post("/sessions", async (req, res, next) => {
     if (!req.body.username || !req.body.password) {
       return next(new Error("Invalid body!"));
@@ -35,12 +29,7 @@ export const setRoutes = (app: Express) => {
         return next(new Error("Invalid password!"));
       }
 
-      const expiresAt = dayjs()
-        .add(
-          process.env.USERS_SESSION_EXPIRY_HOURS as unknown as number,
-          "hour"
-        )
-        .toISOString();
+      const expiresAt = dayjs().add(1, "hour").toISOString();
 
       const sessionToken = generateUUID();
 
@@ -50,8 +39,7 @@ export const setRoutes = (app: Express) => {
         userId: user.id,
       };
 
-      await connection
-        .createQueryBuilder()
+      await AppDataSource.createQueryBuilder()
         .insert()
         .into(UserSession)
         .values([userSession])
@@ -60,6 +48,69 @@ export const setRoutes = (app: Express) => {
       return res.json(userSession);
     } catch (err) {
       return next(err);
+    }
+  });
+
+  app.post('/users', async (req, res, next)=>{
+    if (!req.body.username || !req.body.password){
+      return next(new Error("Invalid body!"))
+    }
+
+    try {
+      
+      const newUser = {
+        id: generateUUID(),
+        passwordHash: hashPassword(req.body.password),
+        username: req.body.username
+      }
+
+      await AppDataSource.createQueryBuilder().insert().into(User).values([newUser]).execute();
+
+      return res.json(newUser);
+
+    } catch (err) {
+
+      return next(err)
+
+    }
+  })
+
+  app.delete("/sessions/:sessionId", async (req, res, next) => {
+
+    try {
+      const userSession = await userSessionRepository.findOne({
+        where: { id: req.params.sessionId },
+      });
+
+      if (!userSession) return next(new Error("Invalid session ID!"));
+
+      await userSessionRepository.remove(userSession);
+
+      return res.end();
+
+    } catch (err) {
+      
+      return next(err);
+    
+    }
+  });
+
+  app.get("/sessions/:sessionId", async (req, res, next) => {
+
+    try {
+      const userSession = await userSessionRepository.findOne({
+        where: { id: req.params.sessionId },
+      });
+
+      if (!userSession) return next(new Error("Invalid session ID!"));
+
+
+      return res.json(userSession);
+
+    } catch (err) {
+      
+      return next(err);
+    
     }
   });
 
