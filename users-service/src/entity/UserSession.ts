@@ -12,7 +12,7 @@ export class UserSession {
     @CreateDateColumn()
     createdAt: Date
 
-    @Column("datetime")
-    expiresAt: Date
+    @Column()
+    expiresAt: string
 
 }
