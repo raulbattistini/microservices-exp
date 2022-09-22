@@ -1,9 +1,10 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import { User } from "../entity/User"
+import User from "../models/User"
 import { UserSession } from "../entity/UserSession"
 
 export const AppDataSource = new DataSource({
+    entities: ["./src/entity/*.ts"],
     type: "mysql",
     host: "localhost",
     port: 3306,
@@ -12,7 +13,7 @@ export const AppDataSource = new DataSource({
     database: "users",
     synchronize: true,
     logging: true,
-    entities: [User, UserSession],
     migrations: ["./src/migration/**.{ts,js}"],
+    migrationsTableName: 'typeorm_metadata',
     subscribers: []
 })
