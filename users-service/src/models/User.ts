@@ -5,8 +5,8 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 
-@Entity("users")
-export default class User {
+@Entity("user")
+export class User {
   name: User
   @PrimaryGeneratedColumn()
   id: string;

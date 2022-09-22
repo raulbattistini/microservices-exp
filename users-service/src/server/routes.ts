@@ -4,7 +4,7 @@ import { Express, NextFunction, Request } from "express";
 import { DataSource, getRepository } from "typeorm";
 import dayjs from "dayjs";
 import { AppDataSource } from "../db/data-source";
-import User from "../models/User";
+import {User} from "../models/User";
 import { passwordCompareSync } from "../helpers/passwordCompareSync";
 
 export const setRoutes = (app: Express) => {
