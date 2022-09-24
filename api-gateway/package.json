@@ -4,9 +4,12 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "ts-node-dev --respawn --transpile-only index.dev.ts --ignore-watch node_modules"
+    "watch": "ts-node-dev --respawn --transpile-only index.dev.ts --ignore-watch node_modules",
+    "service": "ts-node-dev ./src/adapters/UsersService.ts"
   },
   "devDependencies": {
+    "@types/config": "^3.3.0",
+    "@types/cookie-parser": "^1.4.3",
     "module-alias": "2.2.2",
     "ts-node-dev": "2.0.0",
     "typescript": "4.8.3"
@@ -15,6 +18,15 @@
   "author": "Raul Battistini",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^18.7.18"
+    "@types/node": "^18.7.18",
+    "apollo-server": "^3.10.2",
+    "apollo-server-express": "^3.10.2",
+    "config": "^3.3.8",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "got": "^11.8.3",
+    "graphql": "^16.6.0"
   }
 }
