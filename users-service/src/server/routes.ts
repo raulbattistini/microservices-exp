@@ -1,11 +1,12 @@
-import { UserSession } from "./../entity/UserSession";
-import { generateUUID } from "./../helpers/generateUUID";
 import { Express, NextFunction, Request } from "express";
 import dayjs from "dayjs";
+import omit from 'lodash.omit';
+import { UserSession } from "./../entity/UserSession";
+import { generateUUID } from "./../helpers/generateUUID";
 import { AppDataSource } from "../db/data-source";
 import { User } from "../models/User";
 import { passwordCompareSync } from "../helpers/passwordCompareSync";
-import { hashPassword } from "#root/helpers/passwordHash";
+import { hashPassword } from "./../helpers/passwordHash";
 
 export const setRoutes = (app: Express) => {
   AppDataSource.initialize();
@@ -66,7 +67,7 @@ export const setRoutes = (app: Express) => {
 
       await AppDataSource.createQueryBuilder().insert().into(User).values([newUser]).execute();
 
-      return res.json(newUser);
+      return res.json(omit(newUser, ["passwordHash"]));
 
     } catch (err) {
 
