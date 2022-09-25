@@ -5,6 +5,7 @@ specifiers:
   '@types/config': 3.3.0
   '@types/cors': 2.8.12
   '@types/express': 4.17.14
+  '@types/lodash.omit': ^4.5.7
   '@types/node': ^16.11.10
   '@types/uuid': ^8.3.4
   bcryptjs: ^2.4.3
@@ -12,6 +13,7 @@ specifiers:
   cors: ^2.8.5
   dayjs: ^1.11.5
   express: ^4.18.1
+  lodash.omit: ^4.5.0
   module-alias: 2.2.2
   mysql: ^2.14.1
   mysql2: ^2.3.3
@@ -23,11 +25,13 @@ specifiers:
   uuid: ^9.0.0
 
 dependencies:
+  '@types/lodash.omit': 4.5.7
   bcryptjs: 2.4.3
   config: 3.3.8
   cors: 2.8.5
   dayjs: 1.11.5
   express: 4.18.1
+  lodash.omit: 4.5.0
   mysql: 2.18.1
   mysql2: 2.3.3
   reflect-metadata: 0.1.13
@@ -138,6 +142,16 @@ packages:
       '@types/qs': 6.9.7
       '@types/serve-static': 1.15.0
     dev: true
+
+  /@types/lodash.omit/4.5.7:
+    resolution: {integrity: sha512-6q6cNg0tQ6oTWjSM+BcYMBhan54P/gLqBldG4AuXd3nKr0oeVekWNS4VrNEu3BhCSDXtGapi7zjhnna0s03KpA==}
+    dependencies:
+      '@types/lodash': 4.14.185
+    dev: false
+
+  /@types/lodash/4.14.185:
+    resolution: {integrity: sha512-evMDG1bC4rgQg4ku9tKpuMh5iBNEwNa3tf9zRHdP1qlv+1WUg44xat4IxCE14gIpZRGUUWAx2VhItCZc25NfMA==}
+    dev: false
 
   /@types/mime/3.0.1:
     resolution: {integrity: sha512-Y4XFY5VJAuw0FgAqPNd6NNoV44jbq9Bz2L7Rh/J6jLTiHBSBJa9fxqQIvkIld4GsoDOcCbvzOUAbLPsSKKg+uA==}
@@ -734,6 +748,10 @@ packages:
     resolution: {integrity: sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==}
     engines: {node: '>=6'}
     hasBin: true
+    dev: false
+
+  /lodash.omit/4.5.0:
+    resolution: {integrity: sha512-XeqSp49hNGmlkj2EJlfrQFIzQ6lXdNro9sddtQzcJY8QaoC2GO0DT7xaIokHeyM+mIT0mPMlPvkYzg2xCuHdZg==}
     dev: false
 
   /long/4.0.0:
