@@ -103,7 +103,7 @@ export const setRoutes = (app: Express) => {
         where: { id: req.params.sessionId },
       });
 
-      if (!userSession) return next(new Error("Invalid session ID!"));
+      if (!userSession) return res.status(404).end();
 
 
       return res.json(userSession);
