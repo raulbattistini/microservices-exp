@@ -7,7 +7,7 @@ export const injectSession = async (
   next: NextFunction
 ) => {
   if (req.cookies.userSessionId) {
-    const userSession = await UsersService.fetchUserSessions({
+    const userSession = await UsersService.fetchUserSession({
       sessionId: req.cookies.userSessionId,
     });
     console.log('userSession injected is: ---->', userSession);
