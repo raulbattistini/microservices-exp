@@ -1,6 +1,4 @@
 log.ts
 node_modules/**
 .env
-package.json
-package-lock.json
-pnpm-lock.yaml
+./package.json
