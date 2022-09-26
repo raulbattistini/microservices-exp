@@ -4,7 +4,7 @@ import omit from 'lodash.omit';
 import { UserSession } from "./../entity/UserSession";
 import { generateUUID } from "./../helpers/generateUUID";
 import { AppDataSource } from "../db/data-source";
-import { User } from "../models/User";
+import { User } from "../entity/User";
 import { passwordCompareSync } from "../helpers/passwordCompareSync";
 import { hashPassword } from "./../helpers/passwordHash";
 

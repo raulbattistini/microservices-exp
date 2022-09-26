@@ -29,7 +29,7 @@ export const Home = () => {
   useEffect(() => {
     apolloClient.query({ query }).then((res) => {
       const userSession = res.data?.userSession ?? null;
-
+      console.log("User session is: ", userSession)
       setUserSession(userSession);
 
       setIsLoading(false);

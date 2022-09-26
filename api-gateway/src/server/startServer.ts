@@ -21,6 +21,8 @@ export const startServer = async () =>{
 
    app.use(cookieParser())
 
+   app.use(express.json());
+   
    app.use(cors({
       origin: (origin, cb) => cb(null, true), 
       credentials: true,
